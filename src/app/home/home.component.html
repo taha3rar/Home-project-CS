@@ -1,0 +1,35 @@
+<div class="container w-full h-full">
+  <p-tree
+    (onNodeSelect)="nodeSelect($event)"
+    (onNodeUnselect)="nodeSelect($event)"
+    [(selection)]="selectedNodes"
+    selectionMode="checkbox"
+    class="w-full md:w-30rem !border-0"
+    [value]="tree"
+  >
+    <ng-template let-node pTemplate="default">
+      <div
+        (click)="toggleExpand(node, $event)"
+        class="custom-tree-node flex justify-between items-center text-primary"
+      >
+        <div>
+          <span
+            ><i
+              [ngClass]="{ 'text-xl': node.key?.includes('parent') }"
+              [class]="node.icon"
+            ></i
+          ></span>
+          <span [ngClass]="{ 'text-xl': node.key?.includes('parent') }">
+            {{ node.label }}</span
+          >
+        </div>
+        <div
+          class="custom-tree-node-toggle flex items-center pr-3"
+          *ngIf="node.children?.length"
+        >
+          <i class="pi pi-chevron-down" *ngIf="node.expanded"></i>
+          <i class="pi pi-chevron-right" *ngIf="!node.expanded"></i>
+        </div>
+      </div> </ng-template
+  ></p-tree>
+</div>

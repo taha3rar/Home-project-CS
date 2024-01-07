@@ -1,0 +1,63 @@
+:host ::ng-deep {
+  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler {
+    display: none;
+  }
+  p-tree > .p-component {
+    border: 0 !important;
+    border-radius: 1rem !important;
+    padding: 0.5rem 0.5rem;
+  }
+  .p-treenode-content {
+    background-color: #f9f9f9;
+    .p-checkbox .p-checkbox-box .p-icon {
+      color: #0091ff;
+    }
+  }
+  .p-treenode-icon {
+    display: none;
+  }
+  .p-tree {
+    padding: 0;
+  }
+  .p-tree .p-tree-container .p-treenode:focus > .p-treenode-content {
+    box-shadow: none;
+  }
+  .p-treenode-label {
+    display: block;
+    width: 100%;
+  }
+  .parent-tree-node > .p-treenode-content .p-checkbox.p-component {
+    display: none;
+  }
+
+  .p-treenode-children {
+    margin-top: 8px !important;
+  }
+
+  .parent-tree-node {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    &[aria-expanded="true"] {
+      //EXPANDED STATE
+      & > .p-treenode-content {
+        background-color: #cfeaff !important;
+      }
+      // & > .p-treenode-content.p-highlight {
+      //   background-color: inherit !important;
+      // }
+    }
+  }
+
+  .p-checkbox .p-checkbox-box {
+    background-color: #fff !important;
+    border-color: #fff !important;
+  }
+}
+
+.container {
+  padding: 1rem;
+}
+.custom-tree-node-toggle i {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
