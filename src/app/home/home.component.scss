@@ -6,6 +6,15 @@
     border: 0 !important;
     border-radius: 1rem !important;
     padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 306px;
+    max-width: 100%;
+    min-width: 320px;
+    max-height: calc(100vh - 2rem); // acts as padding
+  }
+  .p-tree-wrapper {
+    margin-bottom: 1rem;
   }
   .p-treenode-content {
     background-color: #f9f9f9;
@@ -42,9 +51,6 @@
       & > .p-treenode-content {
         background-color: #cfeaff !important;
       }
-      // & > .p-treenode-content.p-highlight {
-      //   background-color: inherit !important;
-      // }
     }
   }
 
@@ -60,4 +66,15 @@
 .custom-tree-node-toggle i {
   font-size: 0.85rem;
   font-weight: bold;
+}
+
+.resize-handle {
+  margin: auto 16px 8px auto;
+  bottom: 0;
+  right: 0;
+  background: red;
+  width: 30px;
+  height: 30px;
+  cursor: nwse-resize;
+  flex-shrink: 0;
 }

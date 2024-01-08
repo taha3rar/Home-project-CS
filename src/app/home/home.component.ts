@@ -2,16 +2,17 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import { TreeModule, TreeNodeSelectEvent } from 'primeng/tree';
+import { ResizeDirective } from '../shared/directives/resize.directive';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [TreeModule, NgFor, NgIf, NgClass],
+  imports: [TreeModule, NgFor, NgIf, NgClass, ResizeDirective],
   standalone: true,
 })
 export class HomeComponent implements OnInit {
-  selectedNodes: any = []; // Start with an empty array
+  selectedNodes: any = [];
 
   tree: TreeNode[] = [
     {
