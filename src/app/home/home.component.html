@@ -21,16 +21,40 @@
           (click)="toggleExpand(node, $event)"
           class="custom-tree-node flex justify-between items-center text-primary"
         >
-          <div>
-            <span
-              ><i
+          <div class="node-label flex gap-x-2 items-center">
+            <div>
+              <i
                 [ngClass]="{ 'text-xl': node.key?.includes('parent') }"
                 [class]="node.icon"
-              ></i
-            ></span>
-            <span [ngClass]="{ 'text-xl': node.key?.includes('parent') }">
-              {{ node.label }}</span
-            >
+              ></i>
+            </div>
+
+            <div class="flex flex-col items-center">
+              <div
+                [ngClass]="{
+                  'text-xl font-medium': node.key?.includes('parent')
+                }"
+              >
+                {{ node.label }}
+              </div>
+
+              <div
+                *ngIf="node.data?.name"
+                class="text-xs text-gray-400 self-start"
+              >
+                {{ node.data.name | titlecase }}
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="node.data?.connection"
+            class="status status-{{ node.data.connection | connection : true }}"
+          >
+            {{ node.data.connection | connection }}
+          </div>
+
+          <div *ngIf="!node.children?.length">
+            <img width="16" height="16" src="../../assets/touch-svgrepo-com.svg" />
           </div>
           <div
             class="custom-tree-node-toggle flex items-center pr-3"

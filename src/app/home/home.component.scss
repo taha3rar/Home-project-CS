@@ -1,5 +1,5 @@
 :host ::ng-deep {
-  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler {
+  .p-tree-toggler {
     display: none;
   }
   p-tree > .p-component {
@@ -39,16 +39,29 @@
     display: none;
   }
 
+  
+
   .p-treenode-children {
     margin-top: 8px !important;
   }
-
+  .p-treenode {
+    &[aria-checked="true"] > .p-treenode-content {
+      @apply bg-primary;
+    }
+  }
+  
   .parent-tree-node {
     margin-top: 0.5rem;
     font-size: 1.5rem;
+
+    & > ul {
+      max-height: 300px;
+      overflow-y: auto;
+    }
     &[aria-expanded="true"] {
       //EXPANDED STATE
       & > .p-treenode-content {
+        padding: 0.5rem;
         @apply bg-primary;
       }
     }

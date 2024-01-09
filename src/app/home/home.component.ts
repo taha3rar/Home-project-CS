@@ -1,4 +1,4 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TreeDragDropService, TreeNode } from 'primeng/api';
 import {
@@ -7,12 +7,22 @@ import {
   TreeNodeSelectEvent,
 } from 'primeng/tree';
 import { ResizeDirective } from '../shared/directives/resize.directive';
+import { ConnectionPipe } from '../shared/pipes/connection.pipe';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [TreeModule, NgFor, NgIf, NgClass, ResizeDirective, TreeModule],
+  imports: [
+    TreeModule,
+    NgFor,
+    NgIf,
+    NgClass,
+    ResizeDirective,
+    TreeModule,
+    ConnectionPipe,
+    TitleCasePipe,
+  ],
   providers: [TreeDragDropService],
   standalone: true,
 })
@@ -35,19 +45,36 @@ export class HomeComponent implements OnInit {
           draggable: false,
           children: [
             {
-              key: 'zone-1',
+              key: 'sensor-1',
               label: 'Sensor 1',
               icon: 'pi pi-fw pi-video',
-              data: 'Camera 1',
+              data: { name: 'camera 1' },
               draggable: true,
               droppable: true,
               selectable: true,
             },
             {
-              key: '0-0-1',
+              key: 'sensor-2',
               label: 'Sensor 2',
               icon: 'pi pi-fw pi-camera',
-              data: { status: 'active', connection: '1' },
+              data: { connection: 3, name: 'camera 2' },
+              draggable: true,
+              droppable: true,
+            },
+            {
+              key: 'sensor-3',
+              label: 'Sensor 3',
+              icon: 'pi pi-fw pi-video',
+              data: { connection: 2, name: 'camera 3' },
+              draggable: true,
+              droppable: true,
+              selectable: true,
+            },
+            {
+              key: 'sensor-4',
+              label: 'Sensor 4',
+              icon: 'pi pi-fw pi-camera',
+              data: { connection: 1, name: 'camera 4' },
               draggable: true,
               droppable: true,
             },
@@ -55,7 +82,7 @@ export class HomeComponent implements OnInit {
         },
         {
           key: '0-1',
-          label: 'Home',
+          label: 'Zone 2',
           data: 'Home Folder',
           icon: 'pi pi-fw pi-map',
           draggable: false,
