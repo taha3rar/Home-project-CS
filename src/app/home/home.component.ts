@@ -1,14 +1,19 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { TreeNode } from 'primeng/api';
-import { TreeModule, TreeNodeSelectEvent } from 'primeng/tree';
+import { TreeDragDropService, TreeNode } from 'primeng/api';
+import {
+  TreeModule,
+  TreeNodeDropEvent,
+  TreeNodeSelectEvent,
+} from 'primeng/tree';
 import { ResizeDirective } from '../shared/directives/resize.directive';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [TreeModule, NgFor, NgIf, NgClass, ResizeDirective],
+  imports: [TreeModule, NgFor, NgIf, NgClass, ResizeDirective, TreeModule],
+  providers: [TreeDragDropService],
   standalone: true,
 })
 export class HomeComponent implements OnInit {
@@ -21,11 +26,13 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-fw pi-map',
       styleClass: 'parent-tree-node',
       selectable: false,
+      draggable: false,
       children: [
         {
           label: 'Zone 1',
           data: 'Work Folder',
           icon: 'pi pi-fw pi-map',
+          draggable: false,
           children: [
             {
               key: 'zone-1',
@@ -51,6 +58,7 @@ export class HomeComponent implements OnInit {
           label: 'Home',
           data: 'Home Folder',
           icon: 'pi pi-fw pi-map',
+          draggable: false,
           children: [
             {
               key: '0-1-0',
@@ -69,6 +77,7 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-fw pi-calendar',
       styleClass: 'parent-tree-node',
       selectable: false,
+      draggable: false,
       children: [
         {
           key: '1-0',
@@ -97,6 +106,7 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-fw pi-star-fill',
       styleClass: 'parent-tree-node',
       selectable: false,
+      draggable: false,
       children: [
         {
           key: '2-0',
@@ -147,6 +157,7 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-fw pi-star-fill',
       styleClass: 'parent-tree-node',
       selectable: false,
+      draggable: false,
       children: [
         {
           key: '3-0',
@@ -159,12 +170,14 @@ export class HomeComponent implements OnInit {
               label: 'Scarface',
               icon: 'pi pi-fw pi-video',
               data: 'Scarface Movie',
+              droppable: false,
             },
             {
               key: '3-0-1',
               label: 'Serpico',
               icon: 'pi pi-fw pi-video',
               data: 'Serpico Movie',
+              droppable: false,
             },
           ],
         },
@@ -173,6 +186,7 @@ export class HomeComponent implements OnInit {
           label: 'Robert De Niro',
           icon: 'pi pi-fw pi-star-fill',
           data: 'De Niro Movies',
+          draggable: false,
           children: [
             {
               key: '3-1-0',
@@ -191,18 +205,18 @@ export class HomeComponent implements OnInit {
       ],
     },
   ];
-  constructor() {}
+  constructor(private TreeDragDropService: TreeDragDropService) {}
 
   ngOnInit(): void {
     console.log('home component init');
   }
 
   toggleExpand(node: TreeNode, e: MouseEvent) {
-    console.log(node);
     e.stopPropagation();
     node.expanded = !node.expanded;
     if (!node.children?.length || !node.key?.includes('parent')) return;
-    this.collapseAll(node.key);
+
+    this.collapseAll(node.key); // not sure if its allowed to have multiple ones open, if
   }
 
   collapseAll(excluedKey?: string) {
@@ -215,8 +229,22 @@ export class HomeComponent implements OnInit {
     console.log(e);
     // if icon was clicked in the process then disable the event
 
-    if (e.originalEvent.target instanceof HTMLSpanElement) {
+    if (
+      e.originalEvent.target instanceof HTMLSpanElement &&
+      e.node.children?.length
+    ) {
       e.originalEvent.stopImmediatePropagation();
+    }
+  }
+
+  nodeDrop(e: TreeNodeDropEvent) {
+    if (
+      e.dropNode?.children?.length ||
+      !(e.originalEvent?.target instanceof HTMLLIElement)
+    ) {
+      return;
+    } else {
+      e.accept?.();
     }
   }
 }

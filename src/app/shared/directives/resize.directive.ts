@@ -26,6 +26,8 @@ export class ResizeDirective implements AfterViewInit {
 
     let resizeHandle = this.renderer.createElement('div');
     this.renderer.addClass(resizeHandle, 'resize-handle');
+    this.renderer.addClass(resizeHandle, 'pi');
+    this.renderer.addClass(resizeHandle, 'pi-arrows-alt');
     this.renderer.appendChild(this.el.nativeElement, resizeHandle);
 
     // desktop

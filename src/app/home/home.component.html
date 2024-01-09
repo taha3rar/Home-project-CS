@@ -10,6 +10,10 @@
       [(selection)]="selectedNodes"
       selectionMode="checkbox"
       class="w-full md:w-30rem !border-0"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      (onNodeDrop)="nodeDrop($event)"
+      [validateDrop]="true"
       [value]="tree"
     >
       <ng-template let-node pTemplate="default">
@@ -37,6 +41,5 @@
           </div>
         </div> </ng-template
     ></p-tree>
-    <!-- <div class="resize-handle" resizeable ></div> -->
   </div>
 </div>
