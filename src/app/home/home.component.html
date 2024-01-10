@@ -4,14 +4,16 @@
     <div #searchbar class="grid-cols-2 grid px-4 py-2" id="searchbar">
       <div class="flex items-center dropdown-wrapper relative mr-2">
         <i class="pi pi-filter"></i>
-        <p-dropdown [options]="options" placeholder="Select an Option"></p-dropdown>
+        <p-dropdown  [(ngModel)]="dropdownValue"
+         [options]="options" placeholder="Select an Option"></p-dropdown>
       </div>
 
       <div>
         <div class="p-input-icon-right h-full w-full">
           <i class="pi pi-search"></i>
-          <input [formControl]="searchControl" class="border-none w-full h-full bg-secondary rounded-lg pl-2 pr-8"
-            type="text" pInputText placeholder="Search" />
+          <input [formControl]="searchControl"
+            class="text-base border-none w-full h-full bg-secondary rounded-lg pl-2 pr-8" type="text" pInputText
+            placeholder="Search" />
         </div>
       </div>
     </div>

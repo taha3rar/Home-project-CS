@@ -10,7 +10,7 @@ import {
 import { ResizeDirective } from '../shared/directives/resize.directive';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConnectionPipe } from '../shared/pipes/connection.pipe';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { debounceTime, map, tap } from 'rxjs';
 
 @Component({
@@ -28,6 +28,7 @@ import { debounceTime, map, tap } from 'rxjs';
     ConnectionPipe,
     TitleCasePipe,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [TreeDragDropService],
   standalone: true,
@@ -42,21 +43,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   options = [
     {
       label: 'Zones',
-      value: 'zones',
+      value: 'Zones',
     },
     {
       label: 'Sites',
-      value: 'sites',
+      value: 'Sites',
     },
     {
       label: 'Placemark',
-      value: 'placemark',
+      value: 'Placemark',
     },
     {
       label: 'Layers',
-      value: 'layers',
+      value: 'Layers',
     },
   ];
+  dropdownValue: string = this.options[0].value;
+
   tree: TreeNode[] = [
     {
       label: 'Zones',
@@ -128,7 +131,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     },
     {
       key: 'parent-1',
-      label: 'Events',
+      label: 'Sites',
       data: 'Events Folder',
       icon: 'pi pi-fw pi-calendar',
       styleClass: 'parent-tree-node',
@@ -261,6 +264,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       ],
     },
   ];
+
+  treeCopy: TreeNode[] = [...this.tree];
   constructor(private TreeDragDropService: TreeDragDropService) {}
 
   ngOnInit(): void {
@@ -281,10 +286,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.treeComponent = document.querySelector('.p-tree') as HTMLDivElement;
     this.resizeWrapper();
-    console.log(this.pTree);
   }
 
   filter(val: string) {
+    console.log(this.treeCopy);
+    console.log(val);
+    if (!val) {
+      this.pTree.value = this.treeCopy.slice();
+      this.pTree._filter('');
+      return;
+    }
+    this.pTree.filterBy = 'label,data.name,data.connection';
+    const i = this.tree.findIndex((node) => node.label === this.dropdownValue);
+    if (i !== -1) {
+      this.collapseAll(this.tree[i].key);
+      this.tree[i].expanded = true;
+      this.pTree.value = [this.treeCopy[i]];
+    }
     this.pTree._filter(val);
   }
 
