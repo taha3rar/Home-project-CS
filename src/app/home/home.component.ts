@@ -1,13 +1,17 @@
 import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { TreeDragDropService, TreeNode } from 'primeng/api';
 import {
+  Tree,
   TreeModule,
   TreeNodeDropEvent,
   TreeNodeSelectEvent,
 } from 'primeng/tree';
 import { ResizeDirective } from '../shared/directives/resize.directive';
+import { DropdownModule } from 'primeng/dropdown';
 import { ConnectionPipe } from '../shared/pipes/connection.pipe';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +19,7 @@ import { ConnectionPipe } from '../shared/pipes/connection.pipe';
   styleUrls: ['./home.component.scss'],
   imports: [
     TreeModule,
+    DropdownModule,
     NgFor,
     NgIf,
     NgClass,
@@ -22,13 +27,36 @@ import { ConnectionPipe } from '../shared/pipes/connection.pipe';
     TreeModule,
     ConnectionPipe,
     TitleCasePipe,
+    ReactiveFormsModule,
   ],
   providers: [TreeDragDropService],
   standalone: true,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  treeComponent!: HTMLDivElement;
+  @ViewChild(Tree, { static: true }) pTree!: Tree;
+  @ViewChild('searchbar') searchbar: any;
+  @ViewChild('treeWrapper') treeWrapper: any;
+  searchControl = new FormControl<string>('');
   selectedNodes: any = [];
-
+  options = [
+    {
+      label: 'Zones',
+      value: 'zones',
+    },
+    {
+      label: 'Sites',
+      value: 'sites',
+    },
+    {
+      label: 'Placemark',
+      value: 'placemark',
+    },
+    {
+      label: 'Layers',
+      value: 'layers',
+    },
+  ];
   tree: TreeNode[] = [
     {
       label: 'Zones',
@@ -40,6 +68,7 @@ export class HomeComponent implements OnInit {
       children: [
         {
           label: 'Zone 1',
+          key: 'zone1',
           data: 'Work Folder',
           icon: 'pi pi-fw pi-map',
           draggable: false,
@@ -235,15 +264,40 @@ export class HomeComponent implements OnInit {
   constructor(private TreeDragDropService: TreeDragDropService) {}
 
   ngOnInit(): void {
-    console.log('home component init');
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(500),
+        map((value) => {
+          console.log('Here');
+          this.filter(value!);
+        }),
+        tap(() => {
+          this.resizeWrapper();
+        })
+      )
+      .subscribe();
+  }
+
+  ngAfterViewInit(): void {
+    this.treeComponent = document.querySelector('.p-tree') as HTMLDivElement;
+    this.resizeWrapper();
+    console.log(this.pTree);
+  }
+
+  filter(val: string) {
+    this.pTree._filter(val);
   }
 
   toggleExpand(node: TreeNode, e: MouseEvent) {
     e.stopPropagation();
     node.expanded = !node.expanded;
-    if (!node.children?.length || !node.key?.includes('parent')) return;
+    if (!node.children?.length || !node.key?.includes('parent')) {
+      this.resizeWrapper();
+      return;
+    }
 
     this.collapseAll(node.key); // not sure if its allowed to have multiple ones open, if
+    this.resizeWrapper();
   }
 
   collapseAll(excluedKey?: string) {
@@ -253,7 +307,6 @@ export class HomeComponent implements OnInit {
   }
 
   nodeSelect(e: TreeNodeSelectEvent) {
-    console.log(e);
     // if icon was clicked in the process then disable the event
 
     if (
@@ -273,5 +326,15 @@ export class HomeComponent implements OnInit {
     } else {
       e.accept?.();
     }
+  }
+  resizeWrapper() {
+    // without this, the height of the tree is taken before the collapse/expand
+    requestAnimationFrame(() => {
+      this.treeWrapper.nativeElement.style.minHeight = `${
+        this.treeComponent.offsetHeight +
+        this.searchbar.nativeElement?.offsetHeight +
+        48
+      }px`;
+    });
   }
 }

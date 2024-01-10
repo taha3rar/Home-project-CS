@@ -1,69 +1,56 @@
 <div class="container w-full h-full">
-  <div
-    resizeable
-    resizableSelector="p-tree > .p-component"
-    class="ptree-container relative"
-  >
-    <p-tree
-      (onNodeSelect)="nodeSelect($event)"
-      (onNodeUnselect)="nodeSelect($event)"
-      [(selection)]="selectedNodes"
-      selectionMode="checkbox"
-      class="w-full md:w-30rem !border-0"
-      [draggableNodes]="true"
-      [droppableNodes]="true"
-      (onNodeDrop)="nodeDrop($event)"
-      [validateDrop]="true"
-      [value]="tree"
-    >
+  <div #treeWrapper id="tree-wrapper" resizeable
+    class="flex-col flex max-w-full min-w-80 ptree-container relative bg-white rounded-2xl p-2">
+    <div #searchbar class="grid-cols-2 grid px-4 py-2" id="searchbar">
+      <div class="flex items-center dropdown-wrapper relative mr-2">
+        <i class="pi pi-filter"></i>
+        <p-dropdown [options]="options" placeholder="Select an Option"></p-dropdown>
+      </div>
+
+      <div>
+        <div class="p-input-icon-right h-full w-full">
+          <i class="pi pi-search"></i>
+          <input [formControl]="searchControl" class="border-none w-full h-full bg-secondary rounded-lg pl-2 pr-8"
+            type="text" pInputText placeholder="Search" />
+        </div>
+      </div>
+    </div>
+
+    <p-tree id="tree" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeSelect($event)"
+      [(selection)]="selectedNodes" selectionMode="checkbox" class="w-full md:w-30rem !border-0" [draggableNodes]="true"
+      [droppableNodes]="true" (onNodeDrop)="nodeDrop($event)" [validateDrop]="true" [value]="tree">
       <ng-template let-node pTemplate="default">
-        <div
-          (click)="toggleExpand(node, $event)"
-          class="custom-tree-node flex justify-between items-center text-primary"
-        >
+        <div (click)="toggleExpand(node, $event)"
+          class="custom-tree-node flex justify-between items-center text-primary">
           <div class="node-label flex gap-x-2 items-center">
             <div>
-              <i
-                [ngClass]="{ 'text-xl': node.key?.includes('parent') }"
-                [class]="node.icon"
-              ></i>
+              <i [ngClass]="{ 'text-xl': node.key?.includes('parent') }" [class]="node.icon"></i>
             </div>
 
             <div class="flex flex-col items-center">
-              <div
-                [ngClass]="{
+              <div [ngClass]="{
                   'text-xl font-medium': node.key?.includes('parent')
-                }"
-              >
+                }">
                 {{ node.label }}
               </div>
 
-              <div
-                *ngIf="node.data?.name"
-                class="text-xs text-gray-400 self-start"
-              >
+              <div *ngIf="node.data?.name" class="text-xs text-gray-400 self-start">
                 {{ node.data.name | titlecase }}
               </div>
             </div>
           </div>
-          <div
-            *ngIf="node.data?.connection"
-            class="status status-{{ node.data.connection | connection : true }}"
-          >
+          <div *ngIf="node.data?.connection" class="status status-{{ node.data.connection | connection : true }}">
             {{ node.data.connection | connection }}
           </div>
 
           <div *ngIf="!node.children?.length">
             <img width="16" height="16" src="../../assets/touch-svgrepo-com.svg" />
           </div>
-          <div
-            class="custom-tree-node-toggle flex items-center pr-3"
-            *ngIf="node.children?.length"
-          >
+          <div class="custom-tree-node-toggle flex items-center pr-3" *ngIf="node.children?.length">
             <i class="pi pi-chevron-down" *ngIf="node.expanded"></i>
             <i class="pi pi-chevron-right" *ngIf="!node.expanded"></i>
           </div>
-        </div> </ng-template
-    ></p-tree>
+        </div>
+      </ng-template></p-tree>
   </div>
 </div>

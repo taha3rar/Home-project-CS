@@ -1,4 +1,5 @@
 :host ::ng-deep {
+  //TREE
   .p-tree-toggler {
     display: none;
   }
@@ -8,10 +9,7 @@
     padding: 0.5rem 0.5rem;
     display: flex;
     flex-direction: column;
-    min-height: 306px;
     max-width: 100%;
-    min-width: 320px;
-    max-height: calc(100vh - 2rem); // acts as padding
   }
   .p-tree-wrapper {
     margin-bottom: 1rem;
@@ -39,8 +37,6 @@
     display: none;
   }
 
-  
-
   .p-treenode-children {
     margin-top: 8px !important;
   }
@@ -49,10 +45,9 @@
       @apply bg-primary;
     }
   }
-  
+
   .parent-tree-node {
     margin-top: 0.5rem;
-    font-size: 1.5rem;
 
     & > ul {
       max-height: 300px;
@@ -71,8 +66,34 @@
     background-color: #fff !important;
     border-color: #fff !important;
   }
-}
 
+  // Dropdown
+  .p-dropdown {
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    position: relative;
+  }
+  .p-dropdown-label {
+    max-width: max-content;
+    padding-right: 8px;
+  }
+  .p-dropdown-trigger {
+    width: auto !important;
+  }
+}
+.dropdown-wrapper {
+  ::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 3px;
+    height: 50%;
+    background-color: #f1f1f1;
+    translate: 0 -50%;
+    top: 50%;
+  }
+}
 .container {
   padding: 1rem;
 }
@@ -93,4 +114,7 @@
   align-items: center;
   justify-content: center;
   @apply text-primary;
+}
+.ptree-container {
+  max-height: calc(100vh - 2rem); // acts as padding for resizing
 }

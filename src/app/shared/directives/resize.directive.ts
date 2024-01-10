@@ -5,6 +5,8 @@ import {
   Renderer2,
   AfterViewInit,
   Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 @Directive({
@@ -13,6 +15,7 @@ import {
 })
 export class ResizeDirective implements AfterViewInit {
   @Input() resizableSelector?: string;
+  @Output() resize = new EventEmitter<{ width: number; height: number }>();
   private dragging: boolean = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
@@ -60,6 +63,8 @@ export class ResizeDirective implements AfterViewInit {
 
     this.renderer.setStyle(this.el.nativeElement, 'width', `${width}px`);
     this.renderer.setStyle(this.el.nativeElement, 'height', `${height}px`);
+
+    this.resize.emit({ width, height });
   }
 
   onMouseUp() {
@@ -83,6 +88,7 @@ export class ResizeDirective implements AfterViewInit {
 
     this.renderer.setStyle(this.el.nativeElement, 'width', `${width}px`);
     this.renderer.setStyle(this.el.nativeElement, 'height', `${height}px`);
+    this.resize.emit({ width, height });
   }
 
   onTouchEnd() {
