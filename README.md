@@ -98,5 +98,29 @@ to make sure the code works you can copy paste it into the dev-tools console and
 >6. ⦁	Using a tool, create a flowchart demonstrating the widget's operation.
 
 [flowchart](https://viewer.diagrams.net/index.html?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=flowchart.drawio#R7Vxtb9s2EP41xrIPDfRu%2B2PiJtmAruviAsU%2BFbREW2wkUqPo2OmvH18lW7RjpbUteVgQwNaJksiHx7vnjicP%2FEm%2BfqCgSP8gCcwGnpOsB%2F77ged5zjDgH0LyoiTDIFKCBUWJErm1YIq%2BQy10tHSJElhuNWSEZAwV28KYYAxjtiUDlJLVdrM5ybafWoAFtATTGGS29AtKWKqkI29Yy3%2BDaJGaJ7vRWJ3JgWmsR1KmICGrDZF%2FN%2FAnlBCmvuXrCcwEeAYXdd39nrNVxyjErM0Fq3ee%2B3kMp7f3X%2F95RH%2BNH26%2BR%2B98dZdnkC31gKcMUKZ7zF4MDJQscQLFndyBf7tKEYPTAsTi7IpPPJelLM%2F0abtnurPPkDK43hDpnj5AkkNGX3gTfTbQoGmtCfXhqp4C1%2BCabsAfaRnQs76oblwDw79obN6AU2DhZEEEcXIjFI4fxRkoSxRvo1JD6LyGEUy2FNJGaAODcAcERkZhBhh63lbjXbjoJ3wiiPekmoDx%2BHq0NQWu28C2JEsaQ33Zpt4dvNO4cSeucQvIrDvJiaoG%2FuNzF1pzdw9ZnAqjBBgYeFHGobudUf5tIb493H0WnSsQfxomwvr0bDVUAHa2HEaHl0PJKHmqbKa3jQm3hYVol68Xwm1czzOyilNueK4BxoRxxSX4q7gGZGiBecMMzsXUZGAGs0%2BkRKIBF1M11ttC6A6kd88c4%2FJ4uLtRA%2FihDfyuNeg6pwLeHbYwRNyCTPUhoSwlC4JBdldLG6aobvOBkEKj9w0y9qLdMVgy0lKnlVF4ZQDaO6ol%2F9pAo5bmsLWd%2ByncxxbsHwnNuXZygIwd4cREMAwkbB%2FC4jgVJz9TCD9yM9K5Fak4ldHmoGszYjq0pc1NczxdxjEsbSPMRy1OKzszIRmhXI4JFgo%2BR1nWEDUsiYANcZp3o8U5ShK5Nko%2BBQgvPshm74Na8qgBESLCLxc2ix%2Bm%2FEKIjQ2SCIW3%2FJ8PbeJch4OQ93XCj936mP%2BL5pRNCObdB0hOKQQlW8GSyfXJTSCYyZE6Z9ENNzysG6MdquGfTDVcSzXuAcr%2B14KTakHD31UrvzMtsHn3NOWAc7%2FAqTbtnUn1Ojep3i6TekkEwTj%2Bwwxh3CuG4Nlhxn8UeC84NvDyUh48g5eNBtqS7o1Qw9Fucr4vDm22953GnKsOHDX09C%2BdrrdWCr9ffN30ewP4R8hBpGIsnJBbs3DAV2w7liN4jqB%2FZNyOcX7HPNA2QQ5nU0ziNxPDyFDJIOaEyMQ96jLP4WE8XoiciYqBSgioyLX0DO6KxnTnqC%2FdNBg3cNhf9Ms0eLtyuSronBPpMOoZiP5ZEnPiXSkxvOENxsVaQmdOm1B1kqH4iZ8nWC4E%2BEzlNxSLD%2FUI3mX1FHWFNeUmM8YDggJ%2BJ2IktwWkiI8d0k35p1p4iOjO0RqarZWTrK7I7Xo1%2BZdOe73W7KtntNd2tHfrAuCEy7DMejnqIAdP4gCxX4RvmIH4aSHhFitFxuhcKD1IBHKhv3hWFrsWyLk9x6h73W6z%2BdRr3W6b9PX9fum2zYiMGS%2B5irfxFKM9niLe9BSEpZJYyb1gw0%2F16qm8hnpib7yGSaTFEKu7HWGpuU73a83eEOfWKQNFKaZEJfTjJRWDzETPobR1MKnMHDTGT7UVWUd%2BhZht2UjMd8cGzfW6R3nXwroki%2Ba3DotHvbJovu2tTYDmXCWUFAlZ4V97YF6OSUp7E2EH9p7Ghan9qKXaG6j7ovZ2vQIpoHC9RuelwQbC%2B6agrKx3DmQOI2g6ZQeDfEdZSGfUtD8abodhcUpIqfJEyhmSucI310FBDXeVYfrz44e%2FB3XuSLEkPT%2B9yN7VTKU%2F0HstjMtxStQOL%2F%2B2OwTnqWXbt1Pw5lK2YWN%2F1A8bN9pTyfazWxvmOfv6FY1fbX%2BavY2gRRFYr71Z0DaBGQx75c0COx%2BgLOWVKIbohr0dwaYOnYYSe12b1ND2Zhem4cO2Gt6vpGJg7418AbKubi4ThaHj5II2gLniCxBImvAEX1QdkGIUeGBtWony0YEJ1UXV3rVgctaknruMZNw71Q%2FsCL1UhTcVKaOwXGZssCfxseBKgntD19zeARy2iQXPRNdCr%2BXq74auWSyrNV1rkPSwWad2IroW%2Bm%2Bja%2BE5SlFCO%2FVzWc7MaOlhdQ6P7cx%2BSCtGw7dpxYH2J9IKO2p8hKUq%2BLgiKkMCFhfLKa2V5nRu9%2B0ywWXBmUi9vaDRN2mSgXy3kQGEJY%2B5ymVKSvXfc7gjK9aVD1bn9DjEG4dkmQn5DKqjla7XkXddpSSD2kPbE3xuCjRqzFTQ9h2n0clmqk2Bzrk8dNtthLO9HBhFW9Pl%2FaiPtm%2FlN2f0xK8HmqV%2BuY6xbVY%2B7FeUF108I2kLfHR0RvJzls3O3N2C%2BAkKH9J0AynJZ8vyLC4gFKbAqf%2B23xr2W76RdDJ%2FENlU6cLUtW0ZTtT2VfQzqaudi3iAMvEgr9VQqL257t%2FV9l%2FV4rDz2ovo0qvJorakKepXNVlkZ3wKUiwzxf2VLnNmjgTLj1OUJVQk0JrVkM23Y3uu71Hnv9wR2RVdFJYFkQHTCskoyhNhobOZvgR1sO8538oelG29jvOw85%2BEiOzAdqJ%2Fk0e%2FIZITvBCfqiYeoz78ysy1s%2Fk3CrdADfzTgcoP65%2F%2BUaFM%2FQNK%2Ft2%2F)
-if the link doesnt work then check flowchart.drawio.svg 
+if the link doesnt work then check [flowchart.drawio.svg](https://github.com/taha3rar/Home-project-CS/blob/master/src/assets/flowchart.drawio.svg)
 
+
+
+## The rest of the questions are all answered in the code inside the home.component.ts
+
+
+>⦁	The types on the server are differentiated by identifiers: 0 - Site, 1 - Zone, Layer - 3, Placemark - 4. Show an example of code with the following logic: If an object is of the Site type, then return the name 'Site' in the application's language, and so on for each type.
+
+this is another example of the `mapper` way 
+
+```
+ const mapper= {
+    0:"Site",
+    1: "Zone",
+    2: "Layer",
+    3: "Placemark"
+  };
+```
+if you have the key which is the number from 0 to 3 you can get the label, so if
+
+```
+const label ="2"
+
+mapper[label] // "Layer"
+```
