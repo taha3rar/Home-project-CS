@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ConnectionPipe } from '../shared/pipes/connection.pipe';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { debounceTime, map, tap } from 'rxjs';
+import { treeData } from '../shared/data';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,7 @@ import { debounceTime, map, tap } from 'rxjs';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [TreeDragDropService],
+  providers: [TreeDragDropService], // needed for drag and drop to work
   standalone: true,
 })
 export class HomeComponent implements OnInit, AfterViewInit {
@@ -60,220 +61,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
   dropdownValue: string = this.options[0].value;
 
-  tree: TreeNode[] = [
-    {
-      label: 'Zones',
-      key: 'parent-0',
-      icon: 'pi pi-fw pi-map',
-      styleClass: 'parent-tree-node',
-      selectable: false,
-      draggable: false,
-      children: [
-        {
-          label: 'Zone 1',
-          key: 'zone1',
-          data: 'Work Folder',
-          icon: 'pi pi-fw pi-map',
-          draggable: false,
-          children: [
-            {
-              key: 'sensor-1',
-              label: 'Sensor 1',
-              icon: 'pi pi-fw pi-video',
-              data: { name: 'camera 1' },
-              draggable: true,
-              droppable: true,
-              selectable: true,
-            },
-            {
-              key: 'sensor-2',
-              label: 'Sensor 2',
-              icon: 'pi pi-fw pi-camera',
-              data: { connection: 3, name: 'camera 2' },
-              draggable: true,
-              droppable: true,
-            },
-            {
-              key: 'sensor-3',
-              label: 'Sensor 3',
-              icon: 'pi pi-fw pi-video',
-              data: { connection: 2, name: 'camera 3' },
-              draggable: true,
-              droppable: true,
-              selectable: true,
-            },
-            {
-              key: 'sensor-4',
-              label: 'Sensor 4',
-              icon: 'pi pi-fw pi-camera',
-              data: { connection: 1, name: 'camera 4' },
-              draggable: true,
-              droppable: true,
-            },
-          ],
-        },
-        {
-          key: '0-1',
-          label: 'Zone 2',
-          data: 'Home Folder',
-          icon: 'pi pi-fw pi-map',
-          draggable: false,
-          children: [
-            {
-              key: '0-1-0',
-              label: 'Invoices.txt',
-              icon: 'pi pi-fw pi-file',
-              data: 'Invoices for this month',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: 'parent-1',
-      label: 'Sites',
-      data: 'Events Folder',
-      icon: 'pi pi-fw pi-calendar',
-      styleClass: 'parent-tree-node',
-      selectable: false,
-      draggable: false,
-      children: [
-        {
-          key: '1-0',
-          label: 'Meeting',
-          icon: 'pi pi-fw pi-calendar-plus',
-          data: 'Meeting',
-        },
-        {
-          key: '1-1',
-          label: 'Product Launch',
-          icon: 'pi pi-fw pi-calendar-plus',
-          data: 'Product Launch',
-        },
-        {
-          key: '1-2',
-          label: 'Report Review',
-          icon: 'pi pi-fw pi-calendar-plus',
-          data: 'Report Review',
-        },
-      ],
-    },
-    {
-      key: 'parent-2',
-      label: 'Placemark',
-      data: 'Movies Folder',
-      icon: 'pi pi-fw pi-star-fill',
-      styleClass: 'parent-tree-node',
-      selectable: false,
-      draggable: false,
-      children: [
-        {
-          key: '2-0',
-          icon: 'pi pi-fw pi-star-fill',
-          label: 'Al Pacino',
-          data: 'Pacino Movies',
-          children: [
-            {
-              key: '2-0-0',
-              label: 'Scarface',
-              icon: 'pi pi-fw pi-video',
-              data: 'Scarface Movie',
-            },
-            {
-              key: '2-0-1',
-              label: 'Serpico',
-              icon: 'pi pi-fw pi-video',
-              data: 'Serpico Movie',
-            },
-          ],
-        },
-        {
-          key: '2-1',
-          label: 'Robert De Niro',
-          icon: 'pi pi-fw pi-star-fill',
-          data: 'De Niro Movies',
-          children: [
-            {
-              key: '2-1-0',
-              label: 'Goodfellas',
-              icon: 'pi pi-fw pi-video',
-              data: 'Goodfellas Movie',
-            },
-            {
-              key: '2-1-1',
-              label: 'Untouchables',
-              icon: 'pi pi-fw pi-video',
-              data: 'Untouchables Movie',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: 'parent-3',
-      label: 'Layers',
-      data: 'Movies Folder',
-      icon: 'pi pi-fw pi-star-fill',
-      styleClass: 'parent-tree-node',
-      selectable: false,
-      draggable: false,
-      children: [
-        {
-          key: '3-0',
-          icon: 'pi pi-fw pi-star-fill',
-          label: 'Al Pacino',
-          data: 'Pacino Movies',
-          children: [
-            {
-              key: '3-0-0',
-              label: 'Scarface',
-              icon: 'pi pi-fw pi-video',
-              data: 'Scarface Movie',
-              droppable: false,
-            },
-            {
-              key: '3-0-1',
-              label: 'Serpico',
-              icon: 'pi pi-fw pi-video',
-              data: 'Serpico Movie',
-              droppable: false,
-            },
-          ],
-        },
-        {
-          key: '3-1',
-          label: 'Robert De Niro',
-          icon: 'pi pi-fw pi-star-fill',
-          data: 'De Niro Movies',
-          draggable: false,
-          children: [
-            {
-              key: '3-1-0',
-              label: 'Goodfellas',
-              icon: 'pi pi-fw pi-video',
-              data: 'Goodfellas Movie',
-            },
-            {
-              key: '3-1-1',
-              label: 'Untouchables',
-              icon: 'pi pi-fw pi-video',
-              data: 'Untouchables Movie',
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  tree = treeData;
 
   treeCopy: TreeNode[] = [...this.tree];
-  constructor(private TreeDragDropService: TreeDragDropService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.searchControl.valueChanges
       .pipe(
         debounceTime(500),
         map((value) => {
-          console.log('Here');
           this.filter(value!);
         }),
         tap(() => {
