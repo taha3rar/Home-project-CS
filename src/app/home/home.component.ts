@@ -13,6 +13,8 @@ import { ConnectionPipe } from '../shared/pipes/connection.pipe';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { debounceTime, map, tap } from 'rxjs';
 import { treeData } from '../shared/data';
+import { DataService } from '../shared/services/data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +32,9 @@ import { treeData } from '../shared/data';
     TitleCasePipe,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
   ],
-  providers: [TreeDragDropService], // needed for drag and drop to work
+  providers: [TreeDragDropService, DataService],
   standalone: true,
 })
 export class HomeComponent implements OnInit, AfterViewInit {
@@ -64,9 +67,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   tree = treeData;
 
   treeCopy: TreeNode[] = [...this.tree];
-  constructor() {}
+  constructor(
+    private dataService: DataService,
+  ) {}
 
   ngOnInit(): void {
+    this.getData();
+    this.initFilter();
+  }
+
+  getData() {
+    this.dataService.getTreeData().subscribe((data) => {
+      this.tree = data;
+      this.treeCopy = [...this.tree];
+    });
+  }
+
+  initFilter() {
     this.searchControl.valueChanges
       .pipe(
         debounceTime(500),
@@ -86,8 +103,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   filter(val: string) {
-    console.log(this.treeCopy);
-    console.log(val);
     if (!val) {
       this.pTree.value = this.treeCopy.slice();
       this.pTree._filter('');
@@ -111,7 +126,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.collapseAll(node.key); // not sure if its allowed to have multiple ones open, if
+    this.collapseAll(node.key); // not sure if its allowed to have multiple ones open
     this.resizeWrapper();
   }
 
